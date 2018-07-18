@@ -2,16 +2,16 @@
 Algorithms used to rearrange a given vector of elements in ascending order.
 ###Insertion Sort
 
-###CountingSort
+### CountingSort
 It is a sorting technique based on keys between a specific range. It is given the min and max value of the vector and then works by counting the number of objects having distinct key values. After calculates the position of each object in the output sequence. Counting sort can only be implemented on integers.
 
-###QuickSort
+### QuickSort
 QuickSort is a divide and conquer algorithm. It picks an element as pivot and partitions the given array around the picked pivot, here we pick the last element as pivot.
 
-###MergeSort
+### MergeSort
 Merge Sort is a divide and conquer algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves.
 
-###Examples
+### Examples
 ```
 ------------Counting Sort-------------
 Unsorted: = 1 4 3 5 6 2 1 2 
