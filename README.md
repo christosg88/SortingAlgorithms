@@ -1,7 +1,7 @@
 # Sorting Algorithms
 Algorithms used to rearrange a given vector of elements in ascending order.
-###Insertion Sort
-
+### Insertion Sort
+Is a simple sorting algorithm that builds the final sorted vector one item at a time. Considering that one element is already sorted then it iterates through the vector for each element and compares it with the already sorted ones to place it in the right position.
 ### CountingSort
 It is a sorting technique based on keys between a specific range. It is given the min and max value of the vector and then works by counting the number of objects having distinct key values. After calculates the position of each object in the output sequence. Counting sort can only be implemented on integers.
 
