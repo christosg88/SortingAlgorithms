@@ -1,4 +1,5 @@
 #include <vector>
+#include <algorithm>
 
 // Insertion Sort
 template<typename T>
@@ -22,33 +23,44 @@ void insertionSort(std::vector<T> &arr) {
 
 // QuickSort
 template<typename T>
-int partition(std::vector<T> &arr, int start, int end) {
-    int pivot = arr[end - 1];
-    int wall = start;
+int partition(std::vector<T> &arr, int first, int last) {
+    int pivot = arr[last - 1];
+    int wall = first;
 
-    for (auto item = arr.begin() + start; item < arr.begin() + end - 1; ++item) {
+    for (auto item = arr.begin() + first; item < arr.begin() + last - 1; ++item) {
         if (*item < pivot) {
             std::iter_swap(item, arr.begin() + wall);
             ++wall;
         }
     }
 
-    std::iter_swap(arr.begin() + end - 1, arr.begin() + wall);
+    std::iter_swap(arr.begin() + last - 1, arr.begin() + wall);
 
     return wall;
 }
 
 template<typename T>
-void quickSort(std::vector<T> &arr, int start, int end) {
-    if (start < end - 1) {
-        int pos_pivot = partition(arr, start, end);
-        quickSort(arr, start, pos_pivot);
-        quickSort(arr, pos_pivot + 1, end);
+void quickSort(std::vector<T> &arr, int first, int last) {
+    if (first < last - 1) {
+        int pos_pivot = partition(arr, first, last);
+        quickSort(arr, first, pos_pivot);
+        quickSort(arr, pos_pivot + 1, last);
     }
 }
 
 // Counting Sort
-void countingSort(std::vector<int> &arr, int min_val, int max_val) {
+void countingSort(std::vector<int> &arr) {
+    int min_val, max_val;
+    min_val = max_val = arr[0];
+    for (const auto &val : arr) {
+        if (val < min_val) {
+            min_val = val;
+        }
+        else if (val > max_val) {
+            max_val = val;
+        }
+    }
+
     std::vector<int> copy_arr(arr);
 
     int max_val_range = max_val - min_val + 1;
@@ -71,18 +83,18 @@ void countingSort(std::vector<int> &arr, int min_val, int max_val) {
 // Merge Sort
 struct Segment {
 public:
-    int start;
-    int end;
+    int first;
+    int last;
 };
 
 template<typename T>
 void Merge(Segment left, Segment right, std::vector<T> &arr) {
     std::vector<int> arr_copy(arr);
-    int left_ptr = left.start;
-    int right_ptr = right.start;
-    int index = left.start;
+    int left_ptr = left.first;
+    int right_ptr = right.first;
+    int index = left.first;
 
-    while (left_ptr < left.end && right_ptr < right.end) {
+    while (left_ptr < left.last && right_ptr < right.last) {
         if (arr_copy[left_ptr] > arr_copy[right_ptr]) {
             arr[index] = arr_copy[right_ptr];
             right_ptr++;
@@ -95,13 +107,13 @@ void Merge(Segment left, Segment right, std::vector<T> &arr) {
     }
 
     // Copy the remaining elements
-    while (left_ptr < left.end) {
+    while (left_ptr < left.last) {
         arr[index] = arr_copy[left_ptr];
         left_ptr++;
         index++;
     }
 
-    while (right_ptr < right.end) {
+    while (right_ptr < right.last) {
         arr[index] = arr_copy[right_ptr];
         right_ptr++;
         index++;
@@ -109,17 +121,17 @@ void Merge(Segment left, Segment right, std::vector<T> &arr) {
 }
 
 template<typename T>
-void MergeSort(std::vector<T> &arr, int start, int end) {
-    if (start >= end - 1) {
+void MergeSort(std::vector<T> &arr, int first, int last) {
+    if (first >= last - 1) {
         return;
     }
     else {
-        int half_limit = (start + end) / 2;
-        MergeSort(arr, start, half_limit);
-        MergeSort(arr, half_limit, end);
+        int half_limit = (first + last) / 2;
+        MergeSort(arr, first, half_limit);
+        MergeSort(arr, half_limit, last);
 
-        Segment left{start, half_limit};
-        Segment right{half_limit, end};
+        Segment left{first, half_limit};
+        Segment right{half_limit, last};
 
         Merge(left, right, arr);
     }

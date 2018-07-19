@@ -15,10 +15,8 @@ std::ostream &operator<<(std::ostream &stream, std::vector<T> &vec) {
 int main() {
     std::cout << "------------Counting Sort-------------" << '\n';
     std::vector<int> arr_countS = {1, 4, 3, 5, 6, 2, 1, 2};
-    int min = *std::min_element(std::begin(arr_countS), std::end(arr_countS));
-    int max = *std::max_element(std::begin(arr_countS), std::end(arr_countS));
     std::cout << "Unsorted: = " << arr_countS << '\n';
-    countingSort(arr_countS, min, max);
+    countingSort(arr_countS);
     std::cout << "Sorted:   = " << arr_countS << "\n\n";
 
     std::cout << "------------Insertion Sort------------" << '\n';
