@@ -1,17 +1,11 @@
 #include <iostream>
 #include <algorithm>
-#include "sorting.hpp"
+#include "sorting.tpp"
 
-std::ostream& operator<<(std::ostream &stream, std::vector<int> &vec) {
+template <typename T>
+std::ostream& operator<<(std::ostream &stream, std::vector<T> &vec) {
   for (auto item:vec) {
      stream << item <<  " ";
-  }
-  return stream;
-}
-
-std::ostream& operator<<(std::ostream &stream, std::vector<double> &vec) {
-  for (auto item:vec) {
-    stream << item << " ";
   }
   return stream;
 }

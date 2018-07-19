@@ -2,7 +2,8 @@
 #include <vector>
 
 // Insertion Sort
-void insertionSort(std::vector<double> &arr) {
+template <typename T>
+void insertionSort(std::vector<T> &arr) {
   for (int i = 1; i < arr.size(); ++i) {
     int ptrPos = i;
     double ptrVal = arr[ptrPos];
@@ -21,7 +22,8 @@ void insertionSort(std::vector<double> &arr) {
 }
 
 // QuickSort
-int partition(std::vector<int> &arr, int start, int end) {
+template <typename T>
+int partition(std::vector<T> &arr, int start, int end) {
   int pivot = arr[end-1];
   int wall = start;
 
@@ -37,8 +39,8 @@ int partition(std::vector<int> &arr, int start, int end) {
   return wall;
 }
 
-
-void quickSort(std::vector<int> &arr, int start, int end){
+template <typename T>
+void quickSort(std::vector<T> &arr, int start, int end){
   if (start < end-1) {
     int pos_pivot = partition (arr, start, end);
     quickSort (arr, start, pos_pivot);
@@ -73,8 +75,8 @@ struct Segment {
   int start;
   int end;
 };
-
-void Merge(Segment left, Segment right, std::vector<int> &arr) {
+template <typename T>
+void Merge(Segment left, Segment right, std::vector<T> &arr) {
   std::vector<int> arr_copy(arr);
   int left_ptr = left.start;
   int right_ptr = right.start;
@@ -106,7 +108,8 @@ void Merge(Segment left, Segment right, std::vector<int> &arr) {
   }
 }
 
-void MergeSort(std::vector<int> &arr, int start, int end) {
+template <typename T>
+void MergeSort(std::vector<T> &arr, int start, int end) {
   if (start >= end - 1) {
     return;
   }
