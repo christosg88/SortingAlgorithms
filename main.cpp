@@ -6,7 +6,7 @@
 
 template<typename T>
 std::ostream &operator<<(std::ostream &stream, std::vector<T> &vec) {
-    for (auto item : vec) {
+    for (const auto &item : vec) {
         stream << item << " ";
     }
     return stream;
