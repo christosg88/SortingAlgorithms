@@ -1,5 +1,6 @@
-#pragma once
-#include <iostream>
+#ifndef SORTING_HPP
+#define SORTING_HPP
+
 #include <vector>
 
 template<typename T>
@@ -12,3 +13,5 @@ void countingSort(std::vector<int> &arr, int min_val, int max_val);
 
 template<typename T>
 void MergeSort(std::vector<T> &arr, int start, int end);
+
+#endif

@@ -1,6 +1,8 @@
-#include <iostream>
-#include <algorithm>
 #include "sorting.tpp"
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 template<typename T>
 std::ostream &operator<<(std::ostream &stream, std::vector<T> &vec) {
