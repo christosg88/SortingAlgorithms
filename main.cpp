@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 template<typename T>
 std::ostream &operator<<(std::ostream &stream, const std::vector<T> &vec) {
@@ -58,24 +59,39 @@ int main() {
 
     std::vector<int> nums_cpy;
 
-    std::cout << "------------Counting Sort-------------" << '\n';
+    std::chrono::time_point<std::chrono::high_resolution_clock> start;
+    std::chrono::time_point<std::chrono::high_resolution_clock> stop;
+
+    std::cout << "Counting Sort: ";
     nums_cpy = nums;    // copy assignment
+    start = std::chrono::high_resolution_clock::now();
     countingSort(nums_cpy);
+    stop = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() << "ms\n";
     if (nums_cpy != sorted) std::cout << "wrong sort!\n";
 
-    std::cout << "------------Insertion Sort------------" << '\n';
+    std::cout << "Insertion Sort: ";
     nums_cpy = nums;    // copy assignment
+    start = std::chrono::high_resolution_clock::now();
     insertionSort(nums_cpy);
+    stop = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() << "ms\n";
     if (nums_cpy != sorted) std::cout << "wrong sort!\n";
 
-    std::cout << "------------QuickSort-----------------" << '\n';
+    std::cout << "QuickSort: ";
     nums_cpy = nums;    // copy assignment
+    start = std::chrono::high_resolution_clock::now();
     quickSort(nums_cpy, 0, NUM_NUMS);
+    stop = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() << "ms\n";
     if (nums_cpy != sorted) std::cout << "wrong sort!\n";
 
-    std::cout << "------------Merge Sort----------------" << '\n';
+    std::cout << "Merge Sort: ";
     nums_cpy = nums;    // copy assignment
+    start = std::chrono::high_resolution_clock::now();
     MergeSort(nums_cpy, 0, NUM_NUMS);
+    stop = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() << "ms\n";
     if (nums_cpy != sorted) std::cout << "wrong sort!\n";
 
     return 0;
