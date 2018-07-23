@@ -6,15 +6,14 @@ template<typename T>
 void insertionSort(std::vector<T> &arr) {
     for (int i = 1; i < arr.size(); ++i) {
         int ptrPos = i;
-        double ptrVal = arr[ptrPos];
+        T ptrVal = arr[ptrPos];
 
-        for (int j = i - 1; j >= -1; --j) {
+        for (int j = i - 1; j >= 0; --j) {
             if (arr[j] > ptrVal) {
-                arr[ptrPos] = arr[j];
+                std::iter_swap(arr.begin() + ptrPos, arr.begin() + j);
                 --ptrPos;
             }
             else {
-                arr[ptrPos] = ptrVal;
                 break;
             }
         }
@@ -61,7 +60,7 @@ void countingSort(std::vector<int> &arr) {
         }
     }
 
-    std::vector<int> copy_arr(arr);
+    std::vector<int> arr_copy(arr);
 
     int max_val_range = max_val - min_val + 1;
     std::vector<int> count(max_val_range, 0);
@@ -75,8 +74,8 @@ void countingSort(std::vector<int> &arr) {
     }
 
     for (int i = 0; i < arr.size(); ++i) {
-        arr[count[copy_arr[i] - min_val] - 1] = copy_arr[i];
-        --count[copy_arr[i] - min_val];
+        arr[count[arr_copy[i] - min_val] - 1] = arr_copy[i];
+        --count[arr_copy[i] - min_val];
     }
 }
 
@@ -89,7 +88,7 @@ public:
 
 template<typename T>
 void Merge(Segment left, Segment right, std::vector<T> &arr) {
-    std::vector<int> arr_copy(arr);
+    std::vector<T> arr_copy(arr);
     int left_ptr = left.first;
     int right_ptr = right.first;
     int index = left.first;
@@ -97,36 +96,33 @@ void Merge(Segment left, Segment right, std::vector<T> &arr) {
     while (left_ptr < left.last && right_ptr < right.last) {
         if (arr_copy[left_ptr] > arr_copy[right_ptr]) {
             arr[index] = arr_copy[right_ptr];
-            right_ptr++;
+            ++right_ptr;
         }
         else {
             arr[index] = arr_copy[left_ptr];
-            left_ptr++;
+            ++left_ptr;
         }
-        index++;
+        ++index;
     }
 
     // Copy the remaining elements
     while (left_ptr < left.last) {
         arr[index] = arr_copy[left_ptr];
-        left_ptr++;
-        index++;
+        ++left_ptr;
+        ++index;
     }
 
     while (right_ptr < right.last) {
         arr[index] = arr_copy[right_ptr];
-        right_ptr++;
-        index++;
+        ++right_ptr;
+        ++index;
     }
 }
 
 template<typename T>
 void MergeSort(std::vector<T> &arr, int first, int last) {
-    if (first >= last - 1) {
-        return;
-    }
-    else {
-        int half_limit = (first + last) / 2;
+    if (first < last - 1) {
+        int half_limit = first + (last - first) / 2;
         MergeSort(arr, first, half_limit);
         MergeSort(arr, half_limit, last);
 

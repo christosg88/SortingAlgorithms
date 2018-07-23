@@ -41,7 +41,7 @@ bool operator!=(const std::vector<T> &a, const std::vector<T> &b) {
 }
 
 int main() {
-    const int NUM_NUMS = 1000000;
+    const int NUM_NUMS = 100000;
     const int MIN_VAL = -1000, MAX_VAL = 1000;
 
     // fill a vector with NUM_NUMS random numbers in the range [MIN_VAL, MAX_VAL] that follow a uniform distribution
