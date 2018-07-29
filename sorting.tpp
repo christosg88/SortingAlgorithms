@@ -88,18 +88,18 @@ public:
 
 template<typename T>
 void Merge(Segment left, Segment right, std::vector<T> &arr) {
-    std::vector<T> arr_copy(arr);
+    std::vector<T> arr_copy(arr.begin() + left.first, arr.begin() + right.last);
     int left_ptr = left.first;
     int right_ptr = right.first;
     int index = left.first;
 
     while (left_ptr < left.last && right_ptr < right.last) {
-        if (arr_copy[left_ptr] > arr_copy[right_ptr]) {
-            arr[index] = arr_copy[right_ptr];
+        if (arr_copy[left_ptr - left.first] > arr_copy[right_ptr - left.first]) {
+            arr[index] = arr_copy[right_ptr - left.first];
             ++right_ptr;
         }
         else {
-            arr[index] = arr_copy[left_ptr];
+            arr[index] = arr_copy[left_ptr - left.first];
             ++left_ptr;
         }
         ++index;
@@ -107,13 +107,13 @@ void Merge(Segment left, Segment right, std::vector<T> &arr) {
 
     // Copy the remaining elements
     while (left_ptr < left.last) {
-        arr[index] = arr_copy[left_ptr];
+        arr[index] = arr_copy[left_ptr - left.first];
         ++left_ptr;
         ++index;
     }
 
     while (right_ptr < right.last) {
-        arr[index] = arr_copy[right_ptr];
+        arr[index] = arr_copy[right_ptr - left.first];
         ++right_ptr;
         ++index;
     }
