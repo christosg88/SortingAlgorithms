@@ -45,17 +45,8 @@ void quickSort(std::vector<T> &arr, int first, int last) {
 
 // Counting Sort
 void countingSort(std::vector<int> &arr) {
-    int min_val, max_val;
-    min_val = max_val = arr[0];
-
-    for (const auto &val:arr) {
-        if (val < min_val) {
-            min_val = val;
-        }
-        else if (val > max_val) {
-            max_val = val;
-        }
-    }
+    auto minmax = std::minmax_element(std::begin(arr), std::end(arr));
+    int min_val = *minmax.first, max_val = *minmax.second;
 
     std::vector<int> arr_copy(arr);
     int max_val_range = max_val - min_val + 1;
