@@ -4,7 +4,7 @@
 // Insertion Sort
 template<typename T>
 void insertionSort(std::vector<T> &arr) {
-    for (int i = 1; i < arr.size(); ++i) {
+    for (int i = 1, size = arr.size(); i < size; ++i) {
         T ptrVal = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j] > ptrVal) {
