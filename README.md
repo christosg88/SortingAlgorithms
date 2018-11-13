@@ -5,6 +5,7 @@ The implemented algorithms include:
 
 - Counting Sort
 - Parallel Counting Sort
+- Insertion Sort
 - Merge Sort
 - Parallel Merge Sort
 - Quick Sort
@@ -13,15 +14,17 @@ The implementations were timed and compared between them and with `std::sort()`,
 
 ```text
 [T] Timing [std::sort]
-[T] Timing [std::sort] completed in 466 ms
+[T] Timing [std::sort] completed in 456 ms
 [T] Timing [Counting Sort]
 [T] Timing [Counting Sort] completed in 24 ms
 [T] Timing [Parallel Counting Sort]
-[T] Timing [Parallel Counting Sort] completed in 22 ms
+[T] Timing [Parallel Counting Sort] completed in 27 ms
+[T] Timing [Insertion Sort]
+[T] Timing [Insertion Sort] completed in 18153338 ms
 [T] Timing [Merge Sort]
-[T] Timing [Merge Sort] completed in 823 ms
+[T] Timing [Merge Sort] completed in 829 ms
 [T] Timing [Parallel Merge Sort]
-[T] Timing [Parallel Merge Sort] completed in 414 ms
+[T] Timing [Parallel Merge Sort] completed in 387 ms
 [T] Timing [Quick Sort]
-[T] Timing [Quick Sort] completed in 12593 ms
+[T] Timing [Quick Sort] completed in 12709 ms
 ```
