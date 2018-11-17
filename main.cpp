@@ -1,4 +1,5 @@
 #include "CountingSort.hpp"
+#include "InsertionSort.hpp"
 #include "MergeSort.hpp"
 #include "QuickSort.hpp"
 
@@ -27,6 +28,12 @@ int main() {
     ti::ti parallel_counting_sort_timer("Parallel Counting Sort");
     parallel_counting_sort<int>(std::begin(nums_cpy), std::end(nums_cpy));
     parallel_counting_sort_timer.finish();
+    assert(nums_cpy == sorted);
+
+    nums_cpy = nums;
+    ti::ti insertion_sort_timer("Insertion Sort");
+    insertion_sort<int>(std::begin(nums_cpy), std::end(nums_cpy));
+    insertion_sort_timer.finish();
     assert(nums_cpy == sorted);
 
     nums_cpy = nums;

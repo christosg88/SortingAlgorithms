@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -ggdb -O0")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra -O3")
 
-set(HDR_FILES CountingSort.hpp MergeSort.hpp QuickSort.hpp timeit.hpp vector_helpers.hpp)
+set(HDR_FILES CountingSort.hpp InsertionSort.hpp MergeSort.hpp QuickSort.hpp timeit.hpp vector_helpers.hpp)
 
 add_executable(SortingAlgorithms main.cpp ${HDR_FILES})
 
